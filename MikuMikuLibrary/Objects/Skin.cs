@@ -184,15 +184,13 @@ public class Skin
             foreach (var bone in Bones)
                 writer.Write(bone.InverseBindPoseMatrix);
         });
-        /*
         writer.WriteOffset(16, AlignmentMode.Center, () =>
         {
             foreach (var bone in Bones)
-                writer.WriteStringOffset(bone.Name);
+                writer.(bone.Name);
 
             writer.WriteNulls(writer.AddressSpace.GetByteSize());
         });
-        */
         writer.WriteOffsetIf(stringSet.Strings.Count > 0 || Blocks.Count > 0, 16, AlignmentMode.Center, () =>
         {
             var osageNames = new List<string>(Blocks.Count / 2);
@@ -230,10 +228,10 @@ public class Skin
             writer.WriteOffset(16, AlignmentMode.Left, () =>
             {
                 foreach (string value in osageNames)
-                    writer.WriteStringOffset(value);
+                    writer.(value);
 
                 foreach (string value in clothNames)
-                    writer.WriteStringOffset(value);
+                    writer.(value);
 
                 writer.WriteNulls(writer.AddressSpace.GetByteSize());
             });
@@ -241,7 +239,7 @@ public class Skin
             {
                 foreach (var block in Blocks)
                 {
-                    writer.WriteStringOffset(block.Signature);
+                    writer.(block.Signature);
                     writer.WriteOffset(8, AlignmentMode.Left, () => block.Write(writer, stringSet, format));
                 }
 
@@ -251,7 +249,7 @@ public class Skin
             writer.WriteOffset(16, AlignmentMode.Left, () =>
             {
                 foreach (string value in stringSet.Strings)
-                    writer.WriteStringOffset(value);
+                    writer.(value);
 
                 writer.WriteNulls(writer.AddressSpace.GetByteSize());
             });
