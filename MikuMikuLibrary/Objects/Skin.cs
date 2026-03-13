@@ -184,6 +184,7 @@ public class Skin
             foreach (var bone in Bones)
                 writer.Write(bone.InverseBindPoseMatrix);
         });
+        /*
         writer.WriteOffset(16, AlignmentMode.Center, () =>
         {
             foreach (var bone in Bones)
@@ -191,6 +192,7 @@ public class Skin
 
             writer.WriteNulls(writer.AddressSpace.GetByteSize());
         });
+        */
         writer.WriteOffsetIf(stringSet.Strings.Count > 0 || Blocks.Count > 0, 16, AlignmentMode.Center, () =>
         {
             var osageNames = new List<string>(Blocks.Count / 2);
