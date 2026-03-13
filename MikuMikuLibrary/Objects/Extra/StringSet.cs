@@ -15,11 +15,11 @@ public class StringSet
         return (index & 0x8000) == 0 ? null : mStrings[index & 0x7FFF];
     }
 
-    public uint GetStringId(string value)
-    {
-        int index = mStrings.IndexOf(value);
-        return (uint)(index != -1 ? 0x8000 | index : 0);
-    }
+	public uint GetStringId(string value)
+	{
+		int index = mStrings.IndexOf(value);
+		return (uint)(index != -1 ? index : 0);
+	}
 
     public void WriteString(EndianBinaryWriter writer, string value)
     {
